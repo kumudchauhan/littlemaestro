@@ -1,12 +1,12 @@
-# KidsBand
+# LittleMaestro
 
 A browser-based music app built for my 16-month-old daughter who loves music. No downloads, no ads, no subscriptions — just pure musical joy for little hands.
 
-**[Play Now](https://kumudchauhan.github.io/kidsband/)**
+**[Play Now](https://kumudchauhan.github.io/littlemaestro/)**
 
 ## What is it?
 
-KidsBand is a collection of realistic virtual instruments designed for toddlers. Every instrument is built with large, colorful touch targets that work perfectly on iPads and phones. All sounds are synthesized in real-time using the Web Audio API — no audio files, no server needed. It even works offline.
+LittleMaestro is a collection of realistic virtual instruments designed for toddlers. Every instrument is built with large, colorful touch targets that work perfectly on iPads and phones. All sounds are synthesized in real-time using the Web Audio API — no audio files, no server needed. It even works offline.
 
 ## Instruments
 
@@ -34,8 +34,8 @@ I wanted to build something real that my daughter could actually use — not jus
 ## Run locally
 
 ```bash
-git clone https://github.com/kumudchauhan/kidsband.git
-cd kidsband
+git clone https://github.com/kumudchauhan/littlemaestro.git
+cd littlemaestro
 npm install
 npm run dev
 ```

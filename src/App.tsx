@@ -39,7 +39,7 @@ export default function App() {
       <div className="splash" onPointerDown={handleStart}>
         <div className="splash-content">
           <div className="splash-emoji">🎵🎹🥁🎸</div>
-          <h1 className="splash-title">KidsBand</h1>
+          <h1 className="splash-title">LittleMaestro</h1>
           <p className="splash-sub">Tap anywhere to start playing!</p>
         </div>
       </div>
@@ -52,7 +52,7 @@ export default function App() {
   return (
     <div className="app">
       <header className="header">
-        <h1 className="logo">🎵 KidsBand</h1>
+        <h1 className="logo">🎵 LittleMaestro</h1>
         <div className="header-controls">
           <Recorder />
           <div className="volume-control">
