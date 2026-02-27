@@ -1,0 +1,10 @@
+:root {
+  font-family: 'Comic Sans MS', 'Chalkboard SE', cursive;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: #1a1a2e;
+}
