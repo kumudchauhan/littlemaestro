@@ -377,17 +377,22 @@ export function stopSequencer() {
 
 let recorder: MediaRecorder | null = null;
 let recordedChunks: Blob[] = [];
+let mediaStreamDest: MediaStreamAudioDestinationNode | null = null;
 
 export function startRecording(): Promise<void> {
   return new Promise((resolve) => {
-    const dest = Tone.getContext().createMediaStreamDestination();
-    Tone.getDestination().connect(dest);
-    recorder = new MediaRecorder(dest.stream);
+    const ctx = Tone.getContext().rawContext as AudioContext;
+    mediaStreamDest = ctx.createMediaStreamDestination();
+    Tone.getDestination().connect(mediaStreamDest);
+    const mimeType = MediaRecorder.isTypeSupported("audio/webm;codecs=opus")
+      ? "audio/webm;codecs=opus"
+      : "audio/mp4";
+    recorder = new MediaRecorder(mediaStreamDest.stream, { mimeType });
     recordedChunks = [];
     recorder.ondataavailable = (e) => {
       if (e.data.size > 0) recordedChunks.push(e.data);
     };
-    recorder.start();
+    recorder.start(100);
     resolve();
   });
 }
@@ -399,7 +404,12 @@ export function stopRecording(): Promise<Blob | null> {
       return;
     }
     recorder.onstop = () => {
-      const blob = new Blob(recordedChunks, { type: "audio/webm" });
+      const mimeType = recorder?.mimeType || "audio/webm";
+      const blob = new Blob(recordedChunks, { type: mimeType });
+      if (mediaStreamDest) {
+        Tone.getDestination().disconnect(mediaStreamDest);
+        mediaStreamDest = null;
+      }
       recorder = null;
       recordedChunks = [];
       resolve(blob);

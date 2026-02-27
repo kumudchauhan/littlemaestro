@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useState, useRef } from "react";
 import { ensureAudioStarted, playGuitar } from "../audio/engine";
 
 const STRINGS = [
@@ -11,17 +11,50 @@ const STRINGS = [
 ];
 
 export default function Guitar() {
-  const [plucked, setPlucked] = useState<string | null>(null);
+  const [plucked, setPlucked] = useState<Set<string>>(new Set());
+  const strummingRef = useRef(false);
+  const playedRef = useRef<Set<string>>(new Set());
 
-  const handlePlay = useCallback(async (note: string) => {
+  const triggerNote = useCallback(async (note: string) => {
+    if (playedRef.current.has(note)) return;
+    playedRef.current.add(note);
     await ensureAudioStarted();
     playGuitar(note);
-    setPlucked(note);
-    setTimeout(() => setPlucked(null), 600);
+    setPlucked((prev) => new Set(prev).add(note));
+    setTimeout(() => {
+      setPlucked((prev) => {
+        const next = new Set(prev);
+        next.delete(note);
+        return next;
+      });
+    }, 600);
+  }, []);
+
+  const handlePointerDown = useCallback(
+    (note: string) => {
+      strummingRef.current = true;
+      playedRef.current = new Set();
+      triggerNote(note);
+    },
+    [triggerNote]
+  );
+
+  const handlePointerEnter = useCallback(
+    (note: string) => {
+      if (strummingRef.current) {
+        triggerNote(note);
+      }
+    },
+    [triggerNote]
+  );
+
+  const handlePointerUp = useCallback(() => {
+    strummingRef.current = false;
+    playedRef.current = new Set();
   }, []);
 
   return (
-    <div className="instrument-container">
+    <div className="instrument-container" onPointerUp={handlePointerUp} onPointerLeave={handlePointerUp}>
       <div className="instrument-title">🎸 Guitar</div>
       <div className="guitar-realistic">
         <div className="guitar-wood-body">
@@ -48,17 +81,19 @@ export default function Guitar() {
           <div className="guitar-pickguard" />
           <div className="guitar-touch-lanes">
             {STRINGS.map(({ note, label, thickness, color }) => (
-              <button
+              <div
                 key={note}
-                className={`guitar-touch-lane ${plucked === note ? "guitar-lane-plucked" : ""}`}
-                onPointerDown={() => handlePlay(note)}
+                className={`guitar-touch-lane ${plucked.has(note) ? "guitar-lane-plucked" : ""}`}
+                onPointerDown={() => handlePointerDown(note)}
+                onPointerEnter={() => handlePointerEnter(note)}
+                style={{ touchAction: "none" }}
               >
                 <div
-                  className={`guitar-string ${plucked === note ? "guitar-string-vibrate" : ""}`}
+                  className={`guitar-string ${plucked.has(note) ? "guitar-string-vibrate" : ""}`}
                   style={{ width: `${thickness}px`, background: color }}
                 />
                 <span className="guitar-note-label">{label}</span>
-              </button>
+              </div>
             ))}
           </div>
         </div>
