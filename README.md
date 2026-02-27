@@ -22,7 +22,9 @@ LittleMaestro is a collection of realistic virtual instruments designed for todd
 
 ## Why I built this
 
-I wanted to build something real that my daughter could actually use — not just a portfolio project. She lights up every time she hears music, and I wanted to give her a way to make her own. No budget for paid APIs or subscriptions, so everything runs entirely in the browser using Tone.js for audio synthesis.
+There are plenty of fun music apps on the App Store, but none of them let me customize the experience for my daughter. I wanted something that grows with her — where I can add the instruments she loves, the rhymes she hums along to, and remove what she doesn't care about. This gives me the freedom to shape it around her choices, and gives her a playground of musical instruments to explore as her tastes evolve.
+
+I wanted to build something real that my daughter could actually use — not just a portfolio project. She lights up every time she hears music, and I wanted to give her a way to make her own. No paid APIs, no subscriptions — everything runs entirely in the browser using Tone.js for audio synthesis.
 
 ## Tech Stack
 
