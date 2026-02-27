@@ -65,7 +65,6 @@ const drumSnare = new Tone.NoiseSynth({
 }).toDestination();
 
 const drumHihat = new Tone.MetalSynth({
-  frequency: 400,
   envelope: { attack: 0.001, decay: 0.1, release: 0.01 },
   harmonicity: 5.1,
   modulationIndex: 32,
@@ -137,7 +136,7 @@ export function playDrum(type: "kick" | "snare" | "hihat" | "tom") {
       drumSnare.triggerAttackRelease("16n");
       break;
     case "hihat":
-      drumHihat.triggerAttackRelease("32n");
+      drumHihat.triggerAttackRelease("C4", "32n");
       break;
     case "tom":
       drumTom.triggerAttackRelease("G2", "8n");
