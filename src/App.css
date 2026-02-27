@@ -11,7 +11,7 @@ html, body, #root {
   height: 100%;
   width: 100%;
   overflow: hidden;
-  touch-action: manipulation;
+  touch-action: none;
 }
 
 /* ===== SPLASH ===== */
@@ -134,6 +134,8 @@ html, body, #root {
   align-items: center;
   justify-content: center;
   padding: 0.5rem;
+  touch-action: none;
+  overflow: hidden;
   overflow: hidden;
   min-height: 0;
 }
