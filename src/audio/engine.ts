@@ -175,6 +175,25 @@ harmonicaSynth.connect(harmonicaChorus);
 harmonicaSynth.connect(harmonicaReverb);
 harmonicaSynth.volume.value = 0;
 
+const violinSynth = new Tone.PolySynth(Tone.AMSynth, {
+  harmonicity: 2,
+  oscillator: { type: "sawtooth" },
+  envelope: { attack: 0.15, decay: 0.3, sustain: 0.8, release: 1.2 },
+  modulation: { type: "sine" },
+  modulationEnvelope: { attack: 0.2, decay: 0.4, sustain: 0.6, release: 1.0 },
+}).toDestination();
+const violinVibrato = new Tone.Vibrato({ frequency: 5, depth: 0.1 }).toDestination();
+const violinFilter = new Tone.Filter({ frequency: 3000, type: "lowpass", rolloff: -12 }).toDestination();
+const violinReverb = new Tone.Reverb({ decay: 2, wet: 0.25 }).toDestination();
+violinSynth.connect(violinVibrato);
+violinSynth.connect(violinFilter);
+violinSynth.connect(violinReverb);
+violinSynth.volume.value = 0;
+
+export function playViolin(note: string) {
+  violinSynth.triggerAttackRelease(note, "2n");
+}
+
 export function playHarmonica(note: string) {
   harmonicaSynth.triggerAttackRelease(note, "4n");
 }
@@ -318,6 +337,11 @@ export const RHYMES: Record<string, { name: string; notes: RhymeNote[] }> = {
 };
 
 let rhymeTimeout: ReturnType<typeof setTimeout>[] = [];
+let rhymePlayFn: ((note: string) => void) | null = null;
+
+export function setRhymeInstrument(playFn: (note: string) => void) {
+  rhymePlayFn = playFn;
+}
 
 export function playRhyme(
   rhymeId: string,
@@ -326,13 +350,14 @@ export function playRhyme(
   onDone: () => void
 ) {
   stopRhyme();
+  rhymePlayFn = playFn;
   const rhyme = RHYMES[rhymeId];
   if (!rhyme) return;
 
   let time = 0;
   rhyme.notes.forEach((n, i) => {
     const t = setTimeout(() => {
-      playFn(n.note);
+      if (rhymePlayFn) rhymePlayFn(n.note);
       onStep(i);
     }, time);
     rhymeTimeout.push(t);

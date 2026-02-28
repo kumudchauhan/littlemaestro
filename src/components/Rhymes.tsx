@@ -6,9 +6,11 @@ import {
   playHarmonica,
   playGuitar,
   playSitar,
+  playViolin,
   RHYMES,
   playRhyme,
   stopRhyme,
+  setRhymeInstrument,
 } from "../audio/engine";
 
 const INSTRUMENTS = [
@@ -16,6 +18,7 @@ const INSTRUMENTS = [
   { id: "xylo", label: "🌈", playFn: playXylophone },
   { id: "guitar", label: "🎸", playFn: playGuitar },
   { id: "sitar", label: "🪕", playFn: playSitar },
+  { id: "violin", label: "🎻", playFn: playViolin },
   { id: "harmonica", label: "🎙️", playFn: playHarmonica },
 ];
 
@@ -60,7 +63,11 @@ export default function Rhymes() {
           <button
             key={id}
             className={`rhyme-inst-btn ${selectedInstrument === id ? "rhyme-inst-active" : ""}`}
-            onPointerDown={() => setSelectedInstrument(id)}
+            onPointerDown={() => {
+              setSelectedInstrument(id);
+              const inst = INSTRUMENTS.find((item) => item.id === id);
+              if (inst) setRhymeInstrument(inst.playFn);
+            }}
           >
             {label}
           </button>

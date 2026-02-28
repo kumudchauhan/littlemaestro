@@ -5,6 +5,7 @@ import Xylophone from "./components/Xylophone";
 import Guitar from "./components/Guitar";
 import MouthOrgan from "./components/MouthOrgan";
 import Sitar from "./components/Sitar";
+import Violin from "./components/Violin";
 import Rhymes from "./components/Rhymes";
 import Recorder from "./components/Recorder";
 import { ensureAudioStarted, setVolume, getVolume, stopRecording } from "./audio/engine";
@@ -14,6 +15,7 @@ const INSTRUMENTS = [
   { id: "piano", emoji: "🎹", component: Piano },
   { id: "guitar", emoji: "🎸", component: Guitar },
   { id: "sitar", emoji: "🪕", component: Sitar },
+  { id: "violin", emoji: "🎻", component: Violin },
   { id: "xylo", emoji: "🌈", component: Xylophone },
   { id: "harmonica", emoji: "🎙️", component: MouthOrgan },
   { id: "drums", emoji: "🥁", component: Drums },

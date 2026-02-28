@@ -1090,6 +1090,199 @@ html, body, #root {
 
 .record-btn:active, .playback-btn:active { transform: scale(0.9); }
 
+/* ===== VIOLIN (Realistic) ===== */
+.violin-realistic {
+  width: 100%;
+  max-width: 420px;
+  aspect-ratio: 3 / 5;
+  margin: 0 auto;
+  position: relative;
+}
+
+.violin-body {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background: linear-gradient(135deg, #8B4513 0%, #A0522D 30%, #CD853F 60%, #8B4513 100%);
+  border-radius: 40% 40% 45% 45% / 25% 25% 50% 50%;
+  box-shadow: inset 0 0 30px rgba(0,0,0,0.4), 0 4px 15px rgba(0,0,0,0.5);
+  overflow: hidden;
+}
+
+.violin-bout-upper {
+  position: absolute;
+  top: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 75%;
+  height: 20%;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #A0522D, #8B4513);
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.violin-waist {
+  position: absolute;
+  top: 28%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 55%;
+  height: 18%;
+  background: linear-gradient(180deg, #6B3410, #8B4513);
+  border-radius: 50% / 80%;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
+}
+
+.violin-bout-lower {
+  position: absolute;
+  bottom: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 85%;
+  height: 28%;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #8B4513, #A0522D);
+  box-shadow: inset 0 -2px 8px rgba(0,0,0,0.3);
+}
+
+.violin-f-hole {
+  position: absolute;
+  top: 35%;
+  font-size: 2.5rem;
+  font-style: italic;
+  color: #2C1810;
+  opacity: 0.7;
+  pointer-events: none;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+.violin-f-hole.left { left: 18%; }
+.violin-f-hole.right { right: 18%; transform: scaleX(-1); }
+
+.violin-tailpiece {
+  position: absolute;
+  bottom: 6%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12%;
+  height: 10%;
+  background: #1a1a1a;
+  border-radius: 3px 3px 6px 6px;
+}
+
+.violin-chinrest {
+  position: absolute;
+  bottom: 2%;
+  left: 25%;
+  width: 18%;
+  height: 8%;
+  background: #1a1a1a;
+  border-radius: 50%;
+  opacity: 0.8;
+}
+
+.violin-neck {
+  position: absolute;
+  top: -5%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 18%;
+  height: 22%;
+  background: linear-gradient(90deg, #5C3317, #6B3410, #5C3317);
+  border-radius: 4px 4px 0 0;
+}
+
+.violin-fingerboard {
+  position: absolute;
+  top: 0;
+  left: 15%;
+  width: 70%;
+  height: 100%;
+  background: #1a1a1a;
+  border-radius: 3px;
+}
+
+.violin-position-dot {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 5px;
+  height: 5px;
+  background: #FFD700;
+  border-radius: 50%;
+  opacity: 0.5;
+}
+
+.violin-scroll {
+  position: absolute;
+  top: -10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 22%;
+  height: 7%;
+  background: #5C3317;
+  border-radius: 50% 50% 0 0;
+  box-shadow: 0 -2px 5px rgba(0,0,0,0.3);
+}
+
+.violin-bridge {
+  position: absolute;
+  top: 52%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30%;
+  height: 3%;
+  background: #DEB887;
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+.violin-touch-lanes {
+  position: absolute;
+  top: 0;
+  left: 25%;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  z-index: 10;
+}
+
+.violin-touch-lane {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: 15%;
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.violin-touch-lane:active,
+.violin-lane-plucked {
+  background: rgba(255, 215, 0, 0.15);
+}
+
+.violin-string {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  border-radius: 1px;
+  transition: opacity 0.1s;
+}
+
+.violin-string-vibrate {
+  animation: stringVibrate 0.08s ease-in-out 6;
+}
+
+.violin-note-label {
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.7);
+  z-index: 2;
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 480px) {
   .splash-title { font-size: 2.5rem; }
