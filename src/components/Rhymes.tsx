@@ -15,10 +15,10 @@ import {
 
 const INSTRUMENTS = [
   { id: "piano", label: "🎹", playFn: playPiano },
-  { id: "xylo", label: "🌈", playFn: playXylophone },
   { id: "guitar", label: "🎸", playFn: playGuitar },
   { id: "sitar", label: "🪕", playFn: playSitar },
   { id: "violin", label: "🎻", playFn: playViolin },
+  { id: "xylo", label: "🌈", playFn: playXylophone },
   { id: "harmonica", label: "🎙️", playFn: playHarmonica },
 ];
 
