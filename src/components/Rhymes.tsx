@@ -7,6 +7,8 @@ import {
   playGuitar,
   playSitar,
   playViolin,
+  playFlute,
+  playBell,
   RHYMES,
   playRhyme,
   stopRhyme,
@@ -17,9 +19,11 @@ const INSTRUMENTS = [
   { id: "piano", label: "🎹", playFn: playPiano },
   { id: "guitar", label: "🎸", playFn: playGuitar },
   { id: "sitar", label: "🪕", playFn: playSitar },
+  { id: "flute", label: "🪈", playFn: playFlute },
   { id: "violin", label: "🎻", playFn: playViolin },
   { id: "xylo", label: "🌈", playFn: playXylophone },
   { id: "harmonica", label: "🎙️", playFn: playHarmonica },
+  { id: "bells", label: "🔔", playFn: playBell },
 ];
 
 const RHYME_LIST = Object.entries(RHYMES).map(([id, { name }]) => ({ id, name }));

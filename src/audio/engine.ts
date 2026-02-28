@@ -43,15 +43,17 @@ pianoSynth.volume.value = 0;
 
 const xylophoneSynth = new Tone.PolySynth(Tone.FMSynth, {
   harmonicity: 6,
-  modulationIndex: 1.2,
+  modulationIndex: 0.8,
   oscillator: { type: "sine" },
-  envelope: { attack: 0.001, decay: 0.8, sustain: 0, release: 0.6 },
+  envelope: { attack: 0.005, decay: 1.0, sustain: 0, release: 0.8 },
   modulation: { type: "sine" },
-  modulationEnvelope: { attack: 0.001, decay: 0.5, sustain: 0, release: 0.3 },
+  modulationEnvelope: { attack: 0.005, decay: 0.6, sustain: 0, release: 0.4 },
 }).toDestination();
-const xyloReverb = new Tone.Reverb({ decay: 1.5, wet: 0.2 }).toDestination();
+const xyloFilter = new Tone.Filter({ frequency: 3000, type: "lowpass", rolloff: -12 }).toDestination();
+const xyloReverb = new Tone.Reverb({ decay: 2, wet: 0.3 }).toDestination();
+xylophoneSynth.connect(xyloFilter);
 xylophoneSynth.connect(xyloReverb);
-xylophoneSynth.volume.value = 0;
+xylophoneSynth.volume.value = -4;
 
 const drumKick = new Tone.MembraneSynth({
   pitchDecay: 0.05,
@@ -175,16 +177,17 @@ harmonicaSynth.connect(harmonicaChorus);
 harmonicaSynth.connect(harmonicaReverb);
 harmonicaSynth.volume.value = 0;
 
-const violinSynth = new Tone.PolySynth(Tone.AMSynth, {
+const violinSynth = new Tone.PolySynth(Tone.FMSynth, {
   harmonicity: 2,
-  oscillator: { type: "sawtooth" },
-  envelope: { attack: 0.15, decay: 0.3, sustain: 0.8, release: 1.2 },
+  modulationIndex: 0.8,
+  oscillator: { type: "sine" },
+  envelope: { attack: 0.2, decay: 0.5, sustain: 0.7, release: 1.5 },
   modulation: { type: "sine" },
-  modulationEnvelope: { attack: 0.2, decay: 0.4, sustain: 0.6, release: 1.0 },
+  modulationEnvelope: { attack: 0.3, decay: 0.5, sustain: 0.5, release: 1.0 },
 }).toDestination();
-const violinVibrato = new Tone.Vibrato({ frequency: 5, depth: 0.1 }).toDestination();
-const violinFilter = new Tone.Filter({ frequency: 3000, type: "lowpass", rolloff: -12 }).toDestination();
-const violinReverb = new Tone.Reverb({ decay: 2, wet: 0.25 }).toDestination();
+const violinVibrato = new Tone.Vibrato({ frequency: 4.5, depth: 0.06 }).toDestination();
+const violinFilter = new Tone.Filter({ frequency: 2200, type: "lowpass", rolloff: -24 }).toDestination();
+const violinReverb = new Tone.Reverb({ decay: 2.5, wet: 0.3 }).toDestination();
 violinSynth.connect(violinVibrato);
 violinSynth.connect(violinFilter);
 violinSynth.connect(violinReverb);
@@ -192,6 +195,22 @@ violinSynth.volume.value = 0;
 
 export function playViolin(note: string) {
   violinSynth.triggerAttackRelease(note, "2n");
+}
+
+const fluteSynth = new Tone.PolySynth(Tone.Synth, {
+  oscillator: { type: "sine" },
+  envelope: { attack: 0.12, decay: 0.3, sustain: 0.6, release: 1.0 },
+}).toDestination();
+const fluteVibrato = new Tone.Vibrato({ frequency: 5, depth: 0.05 }).toDestination();
+const fluteFilter = new Tone.Filter({ frequency: 2500, type: "lowpass", rolloff: -12 }).toDestination();
+const fluteReverb = new Tone.Reverb({ decay: 2, wet: 0.3 }).toDestination();
+fluteSynth.connect(fluteVibrato);
+fluteSynth.connect(fluteFilter);
+fluteSynth.connect(fluteReverb);
+fluteSynth.volume.value = 0;
+
+export function playFlute(note: string) {
+  fluteSynth.triggerAttackRelease(note, "4n");
 }
 
 export function playHarmonica(note: string) {
