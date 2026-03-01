@@ -23,7 +23,7 @@ const INSTRUMENTS = [
   { id: "sitar", emoji: "🪕", component: Sitar },
   { id: "flute", emoji: "🪈", component: Flute },
   { id: "harmonica", emoji: "🎙️", component: MouthOrgan },
-  { id: "rhymes", emoji: "🎼", component: Rhymes },
+  { id: "rhymes", emoji: "🎶", component: Rhymes },
 ];
 
 export default function App() {
@@ -34,16 +34,24 @@ export default function App() {
   const handleStart = useCallback(async () => {
     await ensureAudioStarted();
     playWelcomeJingle();
-    setTimeout(() => setStarted(true), 900);
+    setStarted(true);
   }, []);
 
   if (!started) {
     return (
       <div className="splash" onPointerDown={handleStart}>
         <div className="splash-content">
-          <div className="splash-emoji">🎵🎹🥁🎸</div>
+          <div className="splash-floating">
+            <span className="splash-float-emoji">🎹</span>
+            <span className="splash-float-emoji">🎸</span>
+            <span className="splash-float-emoji">🥁</span>
+            <span className="splash-float-emoji">🎻</span>
+            <span className="splash-float-emoji">🪈</span>
+            <span className="splash-float-emoji">🔔</span>
+            <span className="splash-float-emoji">🪕</span>
+          </div>
           <h1 className="splash-title">LittleMaestro</h1>
-          <p className="splash-sub">Tap anywhere to start playing!</p>
+          <p className="splash-sub">Tap anywhere to play!</p>
         </div>
       </div>
     );
