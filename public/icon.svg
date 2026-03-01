@@ -6,7 +6,21 @@
     </linearGradient>
   </defs>
   <rect width="512" height="512" rx="80" fill="url(#bg)"/>
-  <text x="256" y="200" text-anchor="middle" font-size="120">🎵</text>
-  <text x="256" y="340" text-anchor="middle" font-family="Comic Sans MS, cursive" font-size="52" fill="white" font-weight="bold">Little</text>
-  <text x="256" y="420" text-anchor="middle" font-family="Comic Sans MS, cursive" font-size="52" fill="#FECA57" font-weight="bold">Maestro</text>
+  <g transform="translate(96, 120)">
+    <rect x="0" y="0" width="320" height="200" rx="12" fill="#fff"/>
+    <rect x="0" y="0" width="45" height="200" rx="4" fill="#fff" stroke="#ccc" stroke-width="1"/>
+    <rect x="46" y="0" width="45" height="200" rx="4" fill="#fff" stroke="#ccc" stroke-width="1"/>
+    <rect x="92" y="0" width="45" height="200" rx="4" fill="#fff" stroke="#ccc" stroke-width="1"/>
+    <rect x="138" y="0" width="45" height="200" rx="4" fill="#fff" stroke="#ccc" stroke-width="1"/>
+    <rect x="184" y="0" width="45" height="200" rx="4" fill="#fff" stroke="#ccc" stroke-width="1"/>
+    <rect x="230" y="0" width="45" height="200" rx="4" fill="#fff" stroke="#ccc" stroke-width="1"/>
+    <rect x="276" y="0" width="44" height="200" rx="4" fill="#fff" stroke="#ccc" stroke-width="1"/>
+    <rect x="30" y="0" width="26" height="120" rx="4" fill="#2d2d2d"/>
+    <rect x="76" y="0" width="26" height="120" rx="4" fill="#2d2d2d"/>
+    <rect x="168" y="0" width="26" height="120" rx="4" fill="#2d2d2d"/>
+    <rect x="214" y="0" width="26" height="120" rx="4" fill="#2d2d2d"/>
+    <rect x="260" y="0" width="26" height="120" rx="4" fill="#2d2d2d"/>
+  </g>
+  <text x="256" y="410" text-anchor="middle" font-family="Comic Sans MS, cursive" font-size="48" fill="white" font-weight="bold">Maestro</text>
+  <text x="256" y="460" text-anchor="middle" font-family="Comic Sans MS, cursive" font-size="28" fill="#FECA57" font-weight="bold">for Kids</text>
 </svg>

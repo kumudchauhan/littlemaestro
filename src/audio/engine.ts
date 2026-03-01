@@ -78,10 +78,10 @@ const drumTom = new Tone.MembraneSynth({
   octaves: 4,
   envelope: { attack: 0.001, decay: 0.25, sustain: 0, release: 0.1 },
 }).toDestination();
-drumKick.volume.value = 0;
-drumSnare.volume.value = 0;
-drumHihat.volume.value = -6;
-drumTom.volume.value = 0;
+drumKick.volume.value = 4;
+drumSnare.volume.value = 4;
+drumHihat.volume.value = 0;
+drumTom.volume.value = 4;
 
 const guitarSynth = new Tone.PolySynth(Tone.FMSynth, {
   harmonicity: 1,
@@ -91,14 +91,14 @@ const guitarSynth = new Tone.PolySynth(Tone.FMSynth, {
   modulation: { type: "square" },
   modulationEnvelope: { attack: 0.002, decay: 0.2, sustain: 0, release: 0.5 },
 }).toDestination();
-guitarSynth.volume.value = 0;
+guitarSynth.volume.value = 6;
 
 const bassSynth = new Tone.MonoSynth({
   oscillator: { type: "fmsquare" },
   envelope: { attack: 0.02, decay: 0.3, sustain: 0.4, release: 0.5 },
   filterEnvelope: { attack: 0.02, decay: 0.1, sustain: 0.5, release: 0.5, baseFrequency: 200, octaves: 2.6 },
 }).toDestination();
-bassSynth.volume.value = 0;
+bassSynth.volume.value = 4;
 
 const sitarSynth = new Tone.FMSynth({
   harmonicity: 2,
@@ -112,14 +112,14 @@ const sitarVibrato = new Tone.Vibrato({ frequency: 4.5, depth: 0.08 }).toDestina
 const sitarReverb = new Tone.Reverb({ decay: 2.5, wet: 0.3 }).toDestination();
 sitarSynth.connect(sitarVibrato);
 sitarSynth.connect(sitarReverb);
-sitarSynth.volume.value = 0;
+sitarSynth.volume.value = 6;
 
 const bellSynth = new Tone.PolySynth(Tone.FMSynth, {
   harmonicity: 8,
   modulationIndex: 2,
   envelope: { attack: 0.001, decay: 1.5, sustain: 0, release: 0.5 },
 }).toDestination();
-bellSynth.volume.value = 0;
+bellSynth.volume.value = 4;
 
 export function playPiano(note: string) {
   pianoSynth.triggerAttackRelease(note, "4n");
@@ -175,7 +175,7 @@ const harmonicaReverb = new Tone.Reverb({ decay: 1.5, wet: 0.2 }).toDestination(
 harmonicaSynth.connect(harmonicaFilter);
 harmonicaSynth.connect(harmonicaChorus);
 harmonicaSynth.connect(harmonicaReverb);
-harmonicaSynth.volume.value = 0;
+harmonicaSynth.volume.value = 6;
 
 const violinSynth = new Tone.PolySynth(Tone.FMSynth, {
   harmonicity: 2,
@@ -191,7 +191,7 @@ const violinReverb = new Tone.Reverb({ decay: 2.5, wet: 0.3 }).toDestination();
 violinSynth.connect(violinVibrato);
 violinSynth.connect(violinFilter);
 violinSynth.connect(violinReverb);
-violinSynth.volume.value = 0;
+violinSynth.volume.value = 8;
 
 export function playViolin(note: string) {
   violinSynth.triggerAttackRelease(note, "2n");
@@ -207,7 +207,7 @@ const fluteReverb = new Tone.Reverb({ decay: 2, wet: 0.3 }).toDestination();
 fluteSynth.connect(fluteVibrato);
 fluteSynth.connect(fluteFilter);
 fluteSynth.connect(fluteReverb);
-fluteSynth.volume.value = 0;
+fluteSynth.volume.value = 8;
 
 export function playFlute(note: string) {
   fluteSynth.triggerAttackRelease(note, "4n");

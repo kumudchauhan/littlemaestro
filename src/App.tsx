@@ -16,13 +16,13 @@ import "./App.css";
 const INSTRUMENTS = [
   { id: "piano", emoji: "🎹", component: Piano },
   { id: "guitar", emoji: "🎸", component: Guitar },
+  { id: "xylo", emoji: "🌈", component: Xylophone },
+  { id: "drums", emoji: "🥁", component: Drums },
+  { id: "bells", emoji: "🔔", component: Bells },
+  { id: "violin", emoji: "🎻", component: Violin },
   { id: "sitar", emoji: "🪕", component: Sitar },
   { id: "flute", emoji: "🪈", component: Flute },
-  { id: "violin", emoji: "🎻", component: Violin },
-  { id: "xylo", emoji: "🌈", component: Xylophone },
   { id: "harmonica", emoji: "🎙️", component: MouthOrgan },
-  { id: "bells", emoji: "🔔", component: Bells },
-  { id: "drums", emoji: "🥁", component: Drums },
   { id: "rhymes", emoji: "🎼", component: Rhymes },
 ];
 
