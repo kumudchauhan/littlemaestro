@@ -10,7 +10,7 @@ import Flute from "./components/Flute";
 import Bells from "./components/Bells";
 import Rhymes from "./components/Rhymes";
 import Recorder from "./components/Recorder";
-import { ensureAudioStarted, setVolume, getVolume, stopRecording } from "./audio/engine";
+import { ensureAudioStarted, setVolume, getVolume, stopRecording, playWelcomeJingle } from "./audio/engine";
 import "./App.css";
 
 const INSTRUMENTS = [
@@ -33,7 +33,8 @@ export default function App() {
 
   const handleStart = useCallback(async () => {
     await ensureAudioStarted();
-    setStarted(true);
+    playWelcomeJingle();
+    setTimeout(() => setStarted(true), 900);
   }, []);
 
   if (!started) {

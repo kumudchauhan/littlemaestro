@@ -217,6 +217,20 @@ export function playHarmonica(note: string) {
   harmonicaSynth.triggerAttackRelease(note, "4n");
 }
 
+export function playWelcomeJingle(): Promise<void> {
+  const notes = ["C4", "E4", "G4", "C5", "E5", "G5", "C6"];
+  const delay = 100;
+  return new Promise((resolve) => {
+    notes.forEach((note, i) => {
+      setTimeout(() => {
+        pianoSynth.triggerAttackRelease(note, "16n");
+        xylophoneSynth.triggerAttackRelease(note, "16n");
+      }, i * delay);
+    });
+    setTimeout(resolve, notes.length * delay + 300);
+  });
+}
+
 export type RhymeNote = { note: string; duration: number };
 
 export const RHYMES: Record<string, { name: string; notes: RhymeNote[] }> = {

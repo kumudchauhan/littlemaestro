@@ -27,10 +27,9 @@ html, body, #root {
 
 .splash-content {
   text-align: center;
-  animation: bounce 2s ease-in-out infinite;
 }
 
-.splash-emoji { font-size: 4rem; margin-bottom: 1rem; }
+.splash-emoji { font-size: 4rem; margin-bottom: 1rem; animation: wiggle 1.5s ease-in-out infinite; }
 
 .splash-title {
   font-size: 4rem;
@@ -46,9 +45,19 @@ html, body, #root {
   font-family: 'Comic Sans MS', 'Chalkboard SE', cursive;
 }
 
-@keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-20px); }
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-5deg); }
+  75% { transform: rotate(5deg); }
+}
+
+.splash-sub {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.9; }
+  50% { opacity: 0.5; }
 }
 
 /* ===== APP LAYOUT ===== */
