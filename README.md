@@ -1,5 +1,13 @@
 # LittleMaestro
 
+🚧 **Work in Progress** - We're iterating! Features and UI may change.
+
+![Status](https://img.shields.io/badge/status-in%20progress-yellow)
+
+
+
+# LittleMaestro
+
 A browser-based music app built for my 16-month-old daughter who loves music. No downloads, no ads, no subscriptions — just pure musical joy for little hands.
 
 **[Play Now](https://kumudchauhan.github.io/littlemaestro/)**
