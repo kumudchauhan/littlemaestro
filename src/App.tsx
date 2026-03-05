@@ -9,8 +9,7 @@ import Violin from "./components/Violin";
 import Flute from "./components/Flute";
 import Bells from "./components/Bells";
 import Rhymes from "./components/Rhymes";
-import Recorder from "./components/Recorder";
-import { ensureAudioStarted, setVolume, getVolume, stopRecording, playWelcomeJingle } from "./audio/engine";
+import { ensureAudioStarted, setVolume, getVolume, stopRhyme, playWelcomeJingle } from "./audio/engine";
 import "./App.css";
 
 const INSTRUMENTS = [
@@ -65,7 +64,6 @@ export default function App() {
       <header className="header">
         <h1 className="logo">🎵 LittleMaestro</h1>
         <div className="header-controls">
-          {activeInstrument !== "rhymes" && <Recorder />}
           <div className="volume-control">
             <span className="volume-icon">{volume === 0 ? "🔇" : volume < 0.4 ? "🔈" : volume < 0.7 ? "🔉" : "🔊"}</span>
             <input
@@ -91,7 +89,7 @@ export default function App() {
             key={id}
             className={`nav-btn ${activeInstrument === id ? "nav-active" : ""}`}
             onPointerDown={() => {
-              if (id === "rhymes") stopRecording();
+              stopRhyme();
               setActiveInstrument(id);
             }}
           >

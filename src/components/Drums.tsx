@@ -2,10 +2,10 @@ import { useCallback, useState } from "react";
 import { ensureAudioStarted, playDrum } from "../audio/engine";
 
 const PADS = [
-  { type: "hihat" as const, label: "Hi-Hat", size: "small", kind: "cymbal" },
-  { type: "snare" as const, label: "Snare", size: "medium", kind: "drum", shellColor: "#E0E0E0", shellDark: "#B0B0B0" },
-  { type: "tom" as const, label: "Tom", size: "medium", kind: "drum", shellColor: "#4A90D9", shellDark: "#2A60A0" },
-  { type: "kick" as const, label: "Kick", size: "large", kind: "drum", shellColor: "#C0392B", shellDark: "#8B1A1A" },
+  { type: "hihat" as const, icon: "🥊", label: "Hi-Hat", color: "#F5D033", hitColor: "#FFE566" },
+  { type: "snare" as const, icon: "🪘", label: "Snare", color: "#E0E0E0", hitColor: "#FFFFFF" },
+  { type: "tom" as const, icon: "🥁", label: "Tom", color: "#4A90D9", hitColor: "#6BB0F0" },
+  { type: "kick" as const, icon: "💥", label: "Kick", color: "#C0392B", hitColor: "#E74C3C" },
 ];
 
 export default function Drums() {
@@ -24,37 +24,23 @@ export default function Drums() {
   return (
     <div className="instrument-container">
       <div className="instrument-title">🥁 Drums</div>
-      <div className="drum-row">
+      <div className="drum-grid">
         {PADS.map((pad) => (
           <button
             key={pad.type}
-            className={`drum-piece drum-${pad.size} ${hits[pad.type] ? "drum-hit" : ""}`}
+            className={`drum-pad ${hits[pad.type] ? "drum-hit" : ""}`}
+            style={{
+              background: hits[pad.type]
+                ? `radial-gradient(circle, ${pad.hitColor}, ${pad.color})`
+                : `radial-gradient(circle at 35% 35%, ${pad.color}, ${pad.color}dd)`,
+              boxShadow: hits[pad.type]
+                ? `0 0 20px ${pad.color}88, inset 0 2px 4px rgba(255,255,255,0.3)`
+                : `0 4px 12px rgba(0,0,0,0.4), inset 0 2px 4px rgba(255,255,255,0.2)`,
+            }}
             onPointerDown={() => handlePlay(pad.type)}
           >
-            {pad.kind === "cymbal" ? (
-              <div className="cymbal">
-                <div className="cymbal-disc" />
-                <div className="cymbal-bell" />
-                <div className="cymbal-stand" />
-              </div>
-            ) : (
-              <div className="real-drum">
-                <div className="drum-skin">
-                  <div className="drum-skin-ring" />
-                </div>
-                <div
-                  className="drum-shell"
-                  style={{
-                    background: `linear-gradient(180deg, ${pad.shellColor}, ${pad.shellDark})`,
-                  }}
-                >
-                  <div className="drum-lug" style={{ left: "15%" }} />
-                  <div className="drum-lug" style={{ left: "45%" }} />
-                  <div className="drum-lug" style={{ left: "75%" }} />
-                </div>
-              </div>
-            )}
-            <span className="drum-label">{pad.label}</span>
+            <span className="drum-pad-icon">{pad.icon}</span>
+            <span className="drum-pad-label">{pad.label}</span>
           </button>
         ))}
       </div>
