@@ -2,52 +2,37 @@ import { useState, useCallback } from "react";
 import {
   ensureAudioStarted,
   playPiano,
-  playXylophone,
-  playHarmonica,
-  playGuitar,
-  playSitar,
-  playViolin,
-  playFlute,
-  playBell,
   RHYMES,
   playRhyme,
   stopRhyme,
-  setRhymeInstrument,
 } from "../audio/engine";
-
-const INSTRUMENTS = [
-  { id: "piano", label: "🎹", playFn: playPiano },
-  { id: "guitar", label: "🎸", playFn: playGuitar },
-  { id: "sitar", label: "🪕", playFn: playSitar },
-  { id: "flute", label: "🪈", playFn: playFlute },
-  { id: "violin", label: "🎻", playFn: playViolin },
-  { id: "xylo", label: "🌈", playFn: playXylophone },
-  { id: "harmonica", label: "🎙️", playFn: playHarmonica },
-  { id: "bells", label: "🔔", playFn: playBell },
-];
 
 const RHYME_LIST = Object.entries(RHYMES).map(([id, { name }]) => ({ id, name }));
 
 export default function Rhymes() {
-  const [selectedInstrument, setSelectedInstrument] = useState("piano");
   const [playing, setPlaying] = useState<string | null>(null);
   const [activeNote, setActiveNote] = useState(-1);
+
+  const handleStop = useCallback(() => {
+    stopRhyme();
+    setPlaying(null);
+    setActiveNote(-1);
+  }, []);
 
   const handlePlay = useCallback(
     async (rhymeId: string) => {
       await ensureAudioStarted();
-      if (playing) {
-        stopRhyme();
-        setPlaying(null);
-        setActiveNote(-1);
+      if (playing === rhymeId) {
+        handleStop();
         return;
       }
-      const inst = INSTRUMENTS.find((i) => i.id === selectedInstrument);
-      if (!inst) return;
+      if (playing) {
+        stopRhyme();
+      }
       setPlaying(rhymeId);
       playRhyme(
         rhymeId,
-        inst.playFn,
+        playPiano,
         (step) => setActiveNote(step),
         () => {
           setPlaying(null);
@@ -55,28 +40,12 @@ export default function Rhymes() {
         }
       );
     },
-    [playing, selectedInstrument]
+    [playing, handleStop]
   );
 
   return (
     <div className="instrument-container">
       <div className="instrument-title">🎼 Rhymes</div>
-
-      <div className="rhyme-instrument-picker">
-        {INSTRUMENTS.map(({ id, label }) => (
-          <button
-            key={id}
-            className={`rhyme-inst-btn ${selectedInstrument === id ? "rhyme-inst-active" : ""}`}
-            onPointerDown={() => {
-              setSelectedInstrument(id);
-              const inst = INSTRUMENTS.find((item) => item.id === id);
-              if (inst) setRhymeInstrument(inst.playFn);
-            }}
-          >
-            {label}
-          </button>
-        ))}
-      </div>
 
       <div className="rhyme-list">
         {RHYME_LIST.map(({ id, name }) => (
