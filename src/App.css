@@ -283,7 +283,7 @@ html, body, #root {
   box-shadow: 0 2px 4px rgba(0,0,0,0.5);
 }
 
-/* ===== DRUMS (Simple Circular Pads 2x2) ===== */
+/* ===== DRUMS (Full Grid) ===== */
 .drum-grid {
   flex: 1;
   width: 100%;
@@ -292,42 +292,32 @@ html, body, #root {
   grid-template-rows: 1fr 1fr;
   gap: 0.5rem;
   padding: 0.5rem;
-  overflow: hidden;
 }
 
 .drum-pad {
-  border-radius: 50%;
-  border: 4px solid rgba(255,255,255,0.25);
+  border: none;
+  border-radius: 1.5rem;
   cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.25rem;
-  transition: transform 0.08s ease, box-shadow 0.1s ease;
-  width: 90%;
-  height: 90%;
-  justify-self: center;
-  align-self: center;
+  gap: 0.5rem;
+  transition: all 0.1s ease;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3), inset 0 2px 8px rgba(255,255,255,0.3);
   -webkit-tap-highlight-color: transparent;
   user-select: none;
 }
 
-.drum-pad:nth-child(3),
-.drum-pad:nth-child(4) {
-  width: 75%;
-  height: 75%;
+.drum-pad:active,
+.drum-hit {
+  transform: scale(0.92);
+  filter: brightness(1.4);
 }
 
 .drum-pad-icon {
-  font-size: clamp(2rem, 8vw, 3.5rem);
-  line-height: 1;
+  font-size: 3.5rem;
   pointer-events: none;
-}
-
-.drum-pad:active,
-.drum-hit {
-  transform: scale(0.93);
 }
 
 .drum-pad-label {

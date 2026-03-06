@@ -23,7 +23,6 @@ export default function Drums() {
 
   return (
     <div className="instrument-container">
-      <div className="instrument-title">🥁 Drums</div>
       <div className="drum-grid">
         {PADS.map((pad) => (
           <button
