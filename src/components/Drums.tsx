@@ -2,10 +2,10 @@ import { useCallback, useState } from "react";
 import { ensureAudioStarted, playDrum } from "../audio/engine";
 
 const PADS = [
-  { type: "hihat" as const, icon: "🥊", label: "Hi-Hat", color: "#F5D033", hitColor: "#FFE566" },
-  { type: "snare" as const, icon: "🪘", label: "Snare", color: "#E0E0E0", hitColor: "#FFFFFF" },
-  { type: "tom" as const, icon: "🥁", label: "Tom", color: "#4A90D9", hitColor: "#6BB0F0" },
-  { type: "kick" as const, icon: "💥", label: "Kick", color: "#C0392B", hitColor: "#E74C3C" },
+  { type: "hihat" as const, label: "Hi-Hat", color: "#C9A84C" },
+  { type: "tom" as const, label: "Tom", color: "#4A90D9" },
+  { type: "snare" as const, label: "Snare", color: "#E8E8E8" },
+  { type: "kick" as const, label: "Kick", color: "#555555" },
 ];
 
 export default function Drums() {
@@ -23,23 +23,25 @@ export default function Drums() {
 
   return (
     <div className="instrument-container">
+      <div className="instrument-title">🥁 Drums</div>
       <div className="drum-grid">
-        {PADS.map((pad) => (
+        {PADS.map(({ type, label, color }) => (
           <button
-            key={pad.type}
-            className={`drum-pad ${hits[pad.type] ? "drum-hit" : ""}`}
+            key={type}
+            className={`drum-pad ${hits[type] ? "drum-flash" : ""}`}
             style={{
-              background: hits[pad.type]
-                ? `radial-gradient(circle, ${pad.hitColor}, ${pad.color})`
-                : `radial-gradient(circle at 35% 35%, ${pad.color}, ${pad.color}dd)`,
-              boxShadow: hits[pad.type]
-                ? `0 0 20px ${pad.color}88, inset 0 2px 4px rgba(255,255,255,0.3)`
-                : `0 4px 12px rgba(0,0,0,0.4), inset 0 2px 4px rgba(255,255,255,0.2)`,
+              background: `radial-gradient(circle at 40% 35%, ${color}, ${color}cc, ${color}88)`,
             }}
-            onPointerDown={() => handlePlay(pad.type)}
+            onPointerDown={() => handlePlay(type)}
           >
-            <span className="drum-pad-icon">{pad.icon}</span>
-            <span className="drum-pad-label">{pad.label}</span>
+            {hits[type] ? (
+              <>
+                <div className="drum-ripple" />
+                <div className="drum-ripple delay" />
+              </>
+            ) : null}
+            <div className="drum-rim" />
+            <span className="drum-pad-label">{label}</span>
           </button>
         ))}
       </div>
