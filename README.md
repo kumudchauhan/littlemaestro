@@ -5,10 +5,9 @@
 ![Status](https://img.shields.io/badge/status-in%20progress-yellow)
 
 
-
 # LittleMaestro
 
-A browser-based music app built for my toddler daughter who loves music. No downloads, no ads, no subscriptions — just pure musical joy for little hands.
+A browser-based music app built for my toddler who loves music. No downloads, no ads, no subscriptions — just pure musical joy designed for little hands.
 
 **[Play Now](https://kumudchauhan.github.io/littlemaestro/)**
 
@@ -44,11 +43,17 @@ Based on child development trends and common favorites in interactive apps, here
 ## Dynamic Instrument picker ##
 Experience **"Live Orchestration:"**  One of the most engaging features is the Dynamic Instrument Picker. Unlike static players, kids can switch between instruments—like moving from a Piano to a Sitar—while a nursery rhyme is actively playing. The audio engine seamlessly handshakes between different **Tone.js** synthesizers in real-time, allowing children to hear how the same melody transforms across different textures and cultures without missing a beat.
 
-## Inspiration behind Why I built this ## 
+## Inspiration and philosphy Why I built this ## 
 
-There are plenty of fun music apps on the App Store, but none of them let me customize the experience for my daughter. I wanted something that grows with her dynamizally where I can add the instruments she loves, the rhymes she hums along to, and remove what she doesn't care about. This gives me the freedom to shape it around her choices, and gives her a playground of musical instruments to explore as her tastes evolve.
+LittleMaestro was built with a specific "Low-Screen Time" philosophy:
 
-I wanted to build something real that my daughter could actually use everyday. She lights up every time she hears music, and I wanted to give her a way to make her own. No paid APIs, no subscriptions — everything runs entirely in the browser using Tone.js for audio synthesis.
+**The Emergency Toy:** Designed as a digital backup for those moments when you’re away from home without physical toys or books.
+
+**Exploration over Entertainment:** At 16 months, the goal is sensory stimulation. Since we can't fit an entire orchestra in our home, this provides a space to discover different sounds (from the Piano to the Tabla) without the clutter.
+
+**Path to Formal Learning:** By letting kids explore a variety of instruments now, we help them identify their natural preferences before they ever step into a formal music class.
+
+**Personalised Features** There are plenty of fun music apps on the App Store, but none of them let me customize the experience for my daughter. I wanted something that grows with her dynamizally where I can add the instruments she loves, the rhymes she hums along to, and remove what she doesn't care about. This gives me the freedom to shape it around her choices, and gives her a playground of musical instruments to explore as her tastes evolve.
 
 ### Future Roadmap ###
 
