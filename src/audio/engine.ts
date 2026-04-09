@@ -162,6 +162,60 @@ export function playBell(note: string) {
   bellSynth.triggerAttackRelease(note, "4n");
 }
 
+/* ===== TABLA ===== */
+// Dayan (right drum) - higher pitched, sharp and resonant
+const tablaDayan = new Tone.MembraneSynth({
+  pitchDecay: 0.03,
+  octaves: 3,
+  envelope: { attack: 0.001, decay: 0.4, sustain: 0, release: 0.3 },
+}).toDestination();
+const tablaDayanMetal = new Tone.MetalSynth({
+  envelope: { attack: 0.001, decay: 0.15, release: 0.05 },
+  harmonicity: 3.1,
+  modulationIndex: 16,
+  resonance: 5000,
+  octaves: 1,
+}).toDestination();
+tablaDayan.volume.value = 4;
+tablaDayanMetal.volume.value = -12;
+
+// Bayan (left drum) - deep bass with characteristic pitch bend
+const tablaBayan = new Tone.MembraneSynth({
+  pitchDecay: 0.15,
+  octaves: 8,
+  envelope: { attack: 0.001, decay: 0.6, sustain: 0, release: 0.4 },
+}).toDestination();
+const tablaBayanReverb = new Tone.Reverb({ decay: 1.5, wet: 0.15 }).toDestination();
+tablaBayan.connect(tablaBayanReverb);
+tablaBayan.volume.value = 6;
+
+export function playTabla(type: "na" | "tin" | "tun" | "ge" | "dha" | "ti") {
+  switch (type) {
+    case "na": // Sharp rim hit on dayan
+      tablaDayan.triggerAttackRelease("G3", "16n");
+      tablaDayanMetal.triggerAttackRelease("C5", "32n");
+      break;
+    case "tin": // Ringing open hit on dayan
+      tablaDayan.triggerAttackRelease("A3", "8n");
+      tablaDayanMetal.triggerAttackRelease("E5", "32n");
+      break;
+    case "tun": // Resonant mid hit on dayan
+      tablaDayan.triggerAttackRelease("E3", "8n");
+      break;
+    case "ge": // Deep bass on bayan
+      tablaBayan.triggerAttackRelease("E1", "4n");
+      break;
+    case "dha": // Combined bayan + dayan
+      tablaBayan.triggerAttackRelease("G1", "4n");
+      tablaDayan.triggerAttackRelease("G3", "16n");
+      tablaDayanMetal.triggerAttackRelease("C5", "32n");
+      break;
+    case "ti": // Light tap on dayan
+      tablaDayan.triggerAttackRelease("C4", "32n");
+      break;
+  }
+}
+
 const harmonicaSynth = new Tone.PolySynth(Tone.AMSynth, {
   harmonicity: 2,
   oscillator: { type: "sine" },

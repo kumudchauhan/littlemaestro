@@ -9,6 +9,7 @@ import Violin from "./components/Violin";
 import Flute from "./components/Flute";
 import Bells from "./components/Bells";
 import Rhymes from "./components/Rhymes";
+import Tabla from "./components/Tabla";
 import { ensureAudioStarted, setVolume, getVolume, stopRhyme, playWelcomeJingle } from "./audio/engine";
 import "./App.css";
 
@@ -17,6 +18,7 @@ const INSTRUMENTS = [
   { id: "guitar", emoji: "🎸", component: Guitar },
   { id: "xylo", emoji: "🌈", component: Xylophone },
   { id: "drums", emoji: "🥁", component: Drums },
+  { id: "tabla", emoji: "🪘", component: Tabla },
   { id: "bells", emoji: "🔔", component: Bells },
   { id: "violin", emoji: "🎻", component: Violin },
   { id: "sitar", emoji: "🪕", component: Sitar },
