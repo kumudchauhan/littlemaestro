@@ -1,17 +1,28 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import {
   ensureAudioStarted,
   playPiano,
   RHYMES,
   playRhyme,
   stopRhyme,
+  setRhymeInstrument,
 } from "../audio/engine";
 
 const RHYME_LIST = Object.entries(RHYMES).map(([id, { name }]) => ({ id, name }));
 
-export default function Rhymes() {
+interface RhymesProps {
+  playFn?: (note: string) => void;
+  instrumentEmoji?: string;
+}
+
+export default function Rhymes({ playFn = playPiano, instrumentEmoji = "🎹" }: RhymesProps) {
   const [playing, setPlaying] = useState<string | null>(null);
   const [activeNote, setActiveNote] = useState(-1);
+
+  // Update the engine's play function when instrument changes (even mid-playback)
+  useEffect(() => {
+    setRhymeInstrument(playFn);
+  }, [playFn]);
 
   const handleStop = useCallback(() => {
     stopRhyme();
@@ -32,7 +43,7 @@ export default function Rhymes() {
       setPlaying(rhymeId);
       playRhyme(
         rhymeId,
-        playPiano,
+        playFn,
         (step) => setActiveNote(step),
         () => {
           setPlaying(null);
@@ -40,12 +51,12 @@ export default function Rhymes() {
         }
       );
     },
-    [playing, handleStop]
+    [playing, handleStop, playFn]
   );
 
   return (
     <div className="instrument-container">
-      <div className="instrument-title">🎼 Rhymes</div>
+      <div className="instrument-title">{instrumentEmoji} Rhymes</div>
 
       <div className="rhyme-list">
         {RHYME_LIST.map(({ id, name }) => (

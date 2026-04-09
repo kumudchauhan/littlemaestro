@@ -10,7 +10,21 @@ import Flute from "./components/Flute";
 import Bells from "./components/Bells";
 import Rhymes from "./components/Rhymes";
 import Tabla from "./components/Tabla";
-import { ensureAudioStarted, setVolume, getVolume, stopRhyme, playWelcomeJingle } from "./audio/engine";
+import {
+  ensureAudioStarted,
+  setVolume,
+  getVolume,
+  stopRhyme,
+  playWelcomeJingle,
+  playPiano,
+  playGuitar,
+  playXylophone,
+  playBell,
+  playViolin,
+  playSitar,
+  playFlute,
+  playHarmonica,
+} from "./audio/engine";
 import "./App.css";
 
 const INSTRUMENTS = [
@@ -24,13 +38,26 @@ const INSTRUMENTS = [
   { id: "sitar", emoji: "🪕", component: Sitar },
   { id: "flute", emoji: "🪈", component: Flute },
   { id: "harmonica", emoji: "🎙️", component: MouthOrgan },
-  { id: "rhymes", emoji: "🎶", component: Rhymes },
 ];
+
+const RHYME_PLAY_FNS: Record<string, (note: string) => void> = {
+  piano: playPiano,
+  guitar: playGuitar,
+  xylo: playXylophone,
+  bells: playBell,
+  violin: playViolin,
+  sitar: playSitar,
+  flute: playFlute,
+  harmonica: playHarmonica,
+};
 
 export default function App() {
   const [started, setStarted] = useState(false);
   const [activeInstrument, setActiveInstrument] = useState("piano");
+  const [rhymeInstrument, setRhymeInstrument] = useState("piano");
   const [volume, setVolumeState] = useState(getVolume());
+
+  const isRhymesMode = activeInstrument === "rhymes";
 
   const handleStart = useCallback(async () => {
     await ensureAudioStarted();
@@ -86,22 +113,62 @@ export default function App() {
       </header>
 
       <nav className="instrument-nav">
-        {INSTRUMENTS.map(({ id, emoji }) => (
-          <button
-            key={id}
-            className={`nav-btn ${activeInstrument === id ? "nav-active" : ""}`}
-            onPointerDown={() => {
-              stopRhyme();
-              setActiveInstrument(id);
-            }}
-          >
-            <span className="nav-emoji">{emoji}</span>
-          </button>
-        ))}
+        {INSTRUMENTS.map(({ id, emoji }) => {
+          const isMelodic = id in RHYME_PLAY_FNS;
+
+          return (
+            <button
+              key={id}
+              className={`nav-btn ${
+                isRhymesMode
+                  ? rhymeInstrument === id
+                    ? "nav-active"
+                    : !isMelodic
+                      ? "nav-disabled"
+                      : ""
+                  : activeInstrument === id
+                    ? "nav-active"
+                    : ""
+              }`}
+              onPointerDown={() => {
+                if (isRhymesMode) {
+                  if (isMelodic) setRhymeInstrument(id);
+                } else {
+                  stopRhyme();
+                  setActiveInstrument(id);
+                }
+              }}
+            >
+              <span className="nav-emoji">{emoji}</span>
+            </button>
+          );
+        })}
+
+        {/* Rhymes toggle button */}
+        <button
+          className={`nav-btn ${isRhymesMode ? "nav-active" : ""}`}
+          onPointerDown={() => {
+            stopRhyme();
+            if (isRhymesMode) {
+              setActiveInstrument(rhymeInstrument);
+            } else {
+              setActiveInstrument("rhymes");
+            }
+          }}
+        >
+          <span className="nav-emoji">{isRhymesMode ? "🔙" : "🎶"}</span>
+        </button>
       </nav>
 
       <main className="stage">
-        <ActiveComponent />
+        {isRhymesMode ? (
+          <Rhymes
+            playFn={RHYME_PLAY_FNS[rhymeInstrument] || playPiano}
+            instrumentEmoji={INSTRUMENTS.find((i) => i.id === rhymeInstrument)?.emoji || "🎹"}
+          />
+        ) : (
+          <ActiveComponent />
+        )}
       </main>
     </div>
   );
