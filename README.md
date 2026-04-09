@@ -22,23 +22,27 @@ Based on child development trends and common favorites in interactive apps, here
 
 ### 1. **The "Big Three" (Immediate Feedback)**
 
-**Drums & Percussion:** 🥁 The absolute favorite for toddlers. It’s physical, loud, and teaches cause-and-effect instantly. For your redesign project, larger circular pads are great for developing motor skills.
+**Drums & Percussion:** 🥁 The absolute favorite for toddlers. It’s physical, loud, and teaches cause-and-effect instantly. Larger circular pads are great for developing motor skills.
 
 **Piano/Keyboard:** 🎹 Visually intuitive. Kids love the linear layout and the ability to press multiple keys to create chords (or "discordant joy").
 
 **Xylophone/Rainbow Glissando:** 🌈 The bright colors help kids associate specific pitches with visual cues.
 
 ### **2. Cultural & Unique Sounds**
-**Tabla:** 🪘 Since you are planning to add the Tabla, it’s a fantastic addition. The "Bayon" (bass) and "Dayan" (treble) sounds provide a unique rhythmic texture that is very engaging for young ears.
 
-**Guitar/Violin:** 🎸 Smaller string instruments are popular because they feel "grown-up" but are manageable.
+**Tabla:** 🪘 The "Bayon" (bass) and "Dayan" (treble) sounds provide a unique rhythmic texture that is very engaging for young ears.
 
-**Shakers & Maracas:** 🪇 Kids love the "sustained" sound of shaking, which is different from the single strike of a drum.
+**Guitar/Sitar:** 🎸 Smaller string instruments are popular because they feel "grown-up" but are manageable.
 
-3. **"Magic" & Wind Instruments**
+
+### 3. **"Magic" & Wind Instruments**
+
 **Bells/Chimes:** 🔔 High-pitched, clear sounds often feel "magical" to children and are great for capturing attention.
 
-**Flute/Recorder:** 🪈 While physically harder to play in real life, in a digital app like LittleMaestro, wind sounds provide a soothing contrast to percussion.
+**Flute/Harmonica:** 🪈 While physically harder to play in real life, in a digital app like LittleMaestro, wind sounds provide a soothing contrast to percussion.
+
+## Dynamic Instrument picker ##
+Experience **"Live Orchestration:"**  One of the most engaging features is the Dynamic Instrument Picker. Unlike static players, kids can switch between instruments—like moving from a Piano to a Sitar—while a nursery rhyme is actively playing. The audio engine seamlessly handshakes between different **Tone.js** synthesizers in real-time, allowing children to hear how the same melody transforms across different textures and cultures without missing a beat.
 
 ## Inspiration behind Why I built this ## 
 
@@ -48,8 +52,15 @@ I wanted to build something real that my daughter could actually use everyday. S
 
 ### Future Roadmap ###
 
-From a personal "gift" to a "App-as-a-Gift" model for the music lover kids of my family and friends
+From a personal "gift" to a "App-as-a-Gift" model for the music lover kids.
 
+-**Personalization & Customization:** The next phase of LittleMaestro is moving toward a fully personalized "App-as-a-Gift" model.
+
+-**Tailored Instrument Kits:** Parents will be able to curate a specific "Musical Universe" for their child via a simple onboarding questionnaire, selecting only the instruments that spark their interest.
+
+-**Dynamic Persona Injection:** Using a unique configuration architecture, the app will morph to include the child's name, their favorite color themes, and a custom setlist of the rhymes they hum most often.
+
+-**Adaptive Accessibility:** Implementing a Guided Access Mode to ensure the interface remains a safe, distraction-free playground for even the smallest hands.
 
 ## Tech Stack
 
