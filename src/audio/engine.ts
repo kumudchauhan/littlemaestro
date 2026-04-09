@@ -235,20 +235,20 @@ const violinSynth = new Tone.PolySynth(Tone.FMSynth, {
   harmonicity: 2,
   modulationIndex: 0.8,
   oscillator: { type: "sine" },
-  envelope: { attack: 0.2, decay: 0.5, sustain: 0.7, release: 1.5 },
+  envelope: { attack: 0.15, decay: 0.4, sustain: 0.5, release: 0.6 },
   modulation: { type: "sine" },
-  modulationEnvelope: { attack: 0.3, decay: 0.5, sustain: 0.5, release: 1.0 },
+  modulationEnvelope: { attack: 0.2, decay: 0.3, sustain: 0.3, release: 0.5 },
 }).toDestination();
 const violinVibrato = new Tone.Vibrato({ frequency: 4.5, depth: 0.06 }).toDestination();
 const violinFilter = new Tone.Filter({ frequency: 2200, type: "lowpass", rolloff: -24 }).toDestination();
-const violinReverb = new Tone.Reverb({ decay: 2.5, wet: 0.3 }).toDestination();
+const violinReverb = new Tone.Reverb({ decay: 1.5, wet: 0.2 }).toDestination();
 violinSynth.connect(violinVibrato);
 violinSynth.connect(violinFilter);
 violinSynth.connect(violinReverb);
-violinSynth.volume.value = 8;
+violinSynth.volume.value = 4;
 
 export function playViolin(note: string) {
-  violinSynth.triggerAttackRelease(note, "2n");
+  violinSynth.triggerAttackRelease(note, "4n");
 }
 
 const fluteSynth = new Tone.PolySynth(Tone.Synth, {
