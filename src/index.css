@@ -14,5 +14,12 @@ body {
   padding: 0;
   overflow: hidden;
   background: #1a1a2e;
-  touch-action: manipulation;
+  touch-action: none;
+  overscroll-behavior: none;
+  -webkit-overflow-scrolling: auto;
+}
+
+html {
+  overscroll-behavior: none;
+  touch-action: none;
 }

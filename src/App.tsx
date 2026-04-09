@@ -80,6 +80,7 @@ export default function App() {
           </div>
           <h1 className="splash-title">LittleMaestro</h1>
           <p className="splash-sub">Tap anywhere to play!</p>
+          <p className="splash-tip">Tip: Use Guided Access (triple-click side button) to lock screen</p>
         </div>
       </div>
     );
